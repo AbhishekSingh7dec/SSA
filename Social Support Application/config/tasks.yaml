@@ -1,0 +1,25 @@
+process_application:
+  description: |
+    Full pipeline: ingest raw application, evaluate structured data,
+    then recommend support or decline. Output includes structured data,
+    evaluator verdict, recommendation decision, plus
+    empowerment advisory when needed.
+  expected_output: |
+    {
+      "beliefs": {
+        "structured_data": { ... },
+        "evaluation": {
+          "eligible": bool,
+          "reasons": [...],
+          "score_margin": float
+        },
+        "recommendation": {
+          "decision": "approve"|"soft_decline"|"decline",
+          "note": str
+        },
+        "enablement": {
+          "recommendations": [ { "type": "...", "details": "..." }, ... ]
+        }
+      }
+    }
+  agent: enablement_advisor
